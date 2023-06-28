@@ -46,3 +46,17 @@ body{
     width: 570px;
     margin: 40px auto;
 }
+
+.btn{
+  border: 1px solid black;
+  outline: none;
+}
+
+
+.card{
+  height: 550px;
+}
+
+.load {
+  margin-left: 20px;
+}

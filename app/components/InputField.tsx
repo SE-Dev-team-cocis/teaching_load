@@ -3,16 +3,17 @@ import React, { MutableRefObject, forwardRef } from "react";
 
 interface InputProps {
   type: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   name: string;
   ref?: MutableRefObject<null>;
   value?: string | undefined;
   options?: string[];
+  classes?: string;
 }
 
 const InputField = forwardRef<HTMLInputElement, InputProps>(
-  ({ type, label, placeholder, name, options, value }, ref) => {
+  ({ type, label, placeholder, name, options, value, classes }, ref) => {
     return (
       <>
         <label
@@ -27,7 +28,7 @@ const InputField = forwardRef<HTMLInputElement, InputProps>(
           value={value}
           placeholder={placeholder}
           name={name}
-          className="focus:outline-none focus:ring-1 focus:ring-green-700 shadow-sm py-2 px-4  border border-gray focus:border-teal-500 w-full rounded"
+          className={`focus:outline-none focus:ring-1 focus:ring-green-700 shadow-sm py-2 px-4  border border-gray focus:border-teal-500 w-full rounded ${classes}`}
           autoComplete="off"
         />
       </>

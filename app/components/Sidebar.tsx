@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { BsBook } from "react-icons/bs";
+import { BsBook, BsGear, BsHouse } from "react-icons/bs";
 
 const Sidebar = () => {
   return (
@@ -19,11 +19,35 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="sidebar_links pl-5">
-        <p className="flex items-center mt-3">
-          <BsBook className="mr-2" />
-          <Link href={"/teachingload"}>Teaching Load</Link>
-        </p>
+      <div className="sidebar_links ">
+        <Link href={"/"}>
+          <div className="link_item">
+            <p className="flex items-center mt-1 py-1 px-5 ">
+              <BsHouse className="mr-2" />
+              <span>Home</span>
+            </p>
+          </div>
+        </Link>
+        <Link href={"/"}>
+          <div className="link_item">
+            <p className="flex items-center mt-1 py-1 px-5 ">
+              <BsBook className="mr-2" />
+              {/* <Link href={"/teachingload"}>Teaching Load</Link> */}
+              <span>Teaching Load</span>
+
+              {/* <Link href={"/teachingload"}>Teaching Load</Link> */}
+            </p>
+          </div>
+        </Link>
+        <Link href={"/mysettings"}>
+          <div className="link_item">
+            <p className="flex items-center mt-1 py-1 px-5">
+              <BsGear className="mr-2" />
+              <span>Settings</span>
+              {/* <Link href={"/mysettings"}>Settings</Link> */}
+            </p>
+          </div>
+        </Link>
       </div>
     </div>
   );

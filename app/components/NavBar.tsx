@@ -24,17 +24,24 @@ const NavBar = () => {
       </div>
 
       <div className="links flex gap-5">
-        <div className="flex items-center justify-center flex-col">
+        {/* <div className="flex items-center justify-center flex-col">
           <BsHouse width={30} />
           <Link href={"/"}>Home</Link>
         </div>
         <div className="flex items-center justify-center flex-col">
           <BsGear width={30} />
-          <Link href={"/settings"}>Settings</Link>
-        </div>
-        <div className="flex items-center justify-center flex-col">
-          <BsEscape />
-          <Link href={"/logout"}>Logout</Link>
+          <Link href={"/mysettings"}>Settings</Link>
+        </div> */}
+        {/* <div className="flex items-center justify-center flex-col"> */}
+        <div className="border-red-600">
+          <Link href={"/logout"} className="">
+            <button className="flex items-center justify-center flex-row border-red-400">
+              <span>
+                <BsEscape className="mr-2" />
+              </span>
+              <span>Logout</span>
+            </button>
+          </Link>
         </div>
       </div>
     </nav>

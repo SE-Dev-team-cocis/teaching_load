@@ -1,0 +1,101 @@
+"use client";
+import { ChangeEvent, useState, useRef, useEffect } from "react";
+
+interface ListItem {
+  id: number;
+  name: string;
+  isChecked: boolean;
+}
+
+const TeachingLoad = () => {
+  const lecturers = [
+    { id: 1, firstName: "Loor", lastName: "Randy", age: 34, checked: false },
+    { id: 2, firstName: "Peter", lastName: "Zeus", age: 38, checked: false },
+    { id: 3, firstName: "John", lastName: "Doe", age: 37, checked: false },
+    {
+      id: 4,
+      firstName: "Jacob",
+      lastName: "Ziggy",
+      age: 32,
+      checked: false,
+    },
+    { id: 5, firstName: "Top", lastName: "Notch", age: 31, checked: false },
+  ];
+  const [filterText, setFilterText] = useState("");
+
+  const initialList: ListItem[] = [
+    { id: 1, name: "Item 1", isChecked: false },
+    { id: 2, name: "Item 2", isChecked: false },
+    { id: 3, name: "Item 3", isChecked: false },
+  ];
+
+  // const [list, setList] = useState<ListItem[]>(initialList);
+  const listRef = useRef<ListItem[]>(initialList);
+
+  const handleCheckboxChange = (itemId: number) => {
+    // const updatedList = list.map((item) =>
+    listRef.current = listRef.current.map((item) =>
+      item.id === itemId ? { ...item, isChecked: !item.isChecked } : item
+    );
+
+    // setList(updatedList);
+    // console.log(listRef.current);
+  };
+  useEffect(() => {
+    console.log("rerendered....");
+    // console.log(list);
+    console.log(listRef.current);
+
+    // }, [list]);
+  }, [listRef]);
+
+  return (
+    <div>
+      {/* {list.map((item) => ( */}
+      {listRef.current.map((item) => (
+        <div key={item.id}>
+          <input
+            type="checkbox"
+            checked={item.isChecked}
+            onChange={() => handleCheckboxChange(item.id)}
+          />
+          <span>{item.name}</span>
+        </div>
+      ))}
+    </div>
+
+    // <div>
+    //   <p>Filtered text: {filterText}</p>
+    //   {/* <p>Filtered text: {.name}</p> */}
+    //   <form action="">
+    //     <input
+    //       type="text"
+    //       placeholder="Enter your search text"
+    //       // onChange={(e) => console.log(e.target.value)}
+    //       onChange={(e) => setFilterText(e.target.value)}
+    //     />
+    //   </form>
+
+    //   {lecturers
+    //     .filter((lecturer) => {
+    //       return filterText.toLocaleLowerCase() === ""
+    //         ? lecturer
+    //         : lecturer.firstName.toLocaleLowerCase().includes(filterText)
+    //         ? lecturer
+    //         : lecturer.lastName.toLocaleLowerCase().includes(filterText);
+    //     })
+    //     .map((lecturer) => (
+    //       <li key={lecturer.id}>
+    //         {lecturer.firstName} {lecturer.lastName}
+    //       </li>
+    //     ))}
+
+    //   {/* <p>Filtered list</p>
+    //   {filtered.map((lect) => (
+    //     <p>{lect.name}</p>
+    //   ))} */}
+    // </div>
+  );
+};
+
+export default TeachingLoad;

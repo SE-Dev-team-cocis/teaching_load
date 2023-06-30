@@ -1,15 +1,21 @@
 "use client";
-import { ChangeEvent, FormEvent, useState, useRef, useEffect } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useState,
+  useRef,
+  useEffect,
+  useMemo,
+} from "react";
 import InputField from "./InputField";
 
-interface Lecturer {
+type Lecturer = {
   id: number;
   firstName: string;
   lastName: string;
   department: string;
   isChecked: boolean;
-}
-
+};
 const Lecturers = () => {
   const initialLecturers: Lecturer[] = [
     {
@@ -76,13 +82,19 @@ const Lecturers = () => {
     setLecturers(updatedList);
   }
 
-  const filteredList = lecturers.filter((lecturer) => {
-    lecturer.firstName
-      .toLocaleLowerCase()
-      .includes(filterText.toLocaleLowerCase());
-  });
+  // const filteredList = lecturers.filter((lecturer) => {
+  //   lecturer.firstName ||
+  //     lecturer.lastName
+  //       .toLocaleLowerCase()
+  //       .includes(filterText.toLocaleLowerCase());
+  // });
 
-  console.log(lecturers);
+  // List of selected lecturers...
+  const checkedLecturers: Lecturer[] = lecturers.filter((lecturer) =>
+    lecturer.isChecked === true ? lecturer : ""
+  );
+  // console.log("Checked...", checkedLecturers);
+
   return (
     <div className="card p-3 bg-white ml-3 rounded-lg ">
       <p className="text-xl font-semibold">Lecturers</p>
@@ -106,7 +118,6 @@ const Lecturers = () => {
         }
       />
       <div>
-        <p>Filter text: {filterText}</p>
         {lecturers
           .filter((lecturer) => {
             return filterText.toLocaleLowerCase() === ""
@@ -121,7 +132,7 @@ const Lecturers = () => {
                 className="mr-3"
                 name="lecturers[]"
                 checked={lecturer.isChecked}
-                value={`${lecturer.firstName} ${lecturer.lastName}`}
+                value={lecturer.id}
                 onChange={() => handleCheckBoxChange(lecturer.id)}
               />
               {lecturer.firstName} {lecturer.lastName}

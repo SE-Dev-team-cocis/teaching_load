@@ -1,11 +1,7 @@
-import Image from "next/image";
-import NavBar from "./components/NavBar";
-import Sidebar from "./components/Sidebar";
 import Link from "next/link";
 import CourseUnits from "./components/CourseUnits";
 import Lecturers from "./components/Lecturers";
 import TeachingLoadSummary from "./components/TeachingLoadSummary";
-
 export default function Home() {
   return (
     <>
